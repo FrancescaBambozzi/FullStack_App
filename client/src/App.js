@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import image from './img/icon.png';
 
 class App extends Component {
   // initialize the\ state
@@ -100,54 +101,63 @@ class App extends Component {
   render() {
     const { data } = this.state;
     return (
-      <div>
+      <div className="container card-panel center-align" style={{
+        marginLeft: '20px'
+      }}>
+        <div className="container">
+          <h1 style={{ 
+            color: 'darkred',
+            fontSize: '30px',
+             }}>MongoDB PlayGround</h1>
+          <img src={image} />
+        </div>
         <ul>
           {data.length <= 0
             ? 'NO DB ENTRIES YET'
             : data.map((dat) => (
-              <li style={{ padding: '10px' }} key={data.message}>
+              <li style={{ padding: '20px' }} key={data.message}>
                 <span style={{ color: 'gray' }}> id: </span> {dat.id} <br />
                 <span style={{ color: 'gray' }}> data: </span>
                 {dat.message}
               </li>
             ))}
         </ul>
-        <div style={{ padding: '10px' }}>
+        <div style={{ padding: '20px' }}>
           <input
             type="text"
             onChange={(e) => this.setState({ message: e.target.value })}
             placeholder="add something in the database"
-            style={{ width: '200px' }}
+            style={{ width: '250px' }}
           />
-          <button onClick={() => this.putDataToDB(this.state.message)}>
+          <button className="waves-effect waves-light btn-small" onClick={() => this.putDataToDB(this.state.message)}>
             ADD
           </button>
         </div>
-        <div style={{ padding: '10px' }}>
+        <div style={{ padding: '20px' }}>
           <input
             type="text"
-            style={{ width: '200px' }}
+            style={{ width: '250px' }}
             onChange={(e) => this.setState({ idToDelete: e.target.value })}
             placeholder="put id of item to delete here"
           />
-          <button onClick={() => this.deleteFromDB(this.state.idToDelete)}>
+          <button className="waves-effect waves-light btn-small" onClick={() => this.deleteFromDB(this.state.idToDelete)}>
             DELETE
           </button>
         </div>
         <div style={{ padding: '10px' }}>
           <input
             type="text"
-            style={{ width: '200px' }}
+            style={{ width: '250px' }}
             onChange={(e) => this.setState({ idToUpdate: e.target.value })}
             placeholder="id of item to update here"
           />
           <input
             type="text"
-            style={{ width: '200px' }}
+            style={{ width: '250px' }}
             onChange={(e) => this.setState({ updateToApply: e.target.value })}
             placeholder="put new value of the item here"
           />
-          <button
+          <button className="waves-effect waves-light btn-small"
             onClick={() =>
               this.updateDB(this.state.idToUpdate, this.state.updateToApply)
             }
